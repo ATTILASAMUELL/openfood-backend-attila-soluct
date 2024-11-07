@@ -28,28 +28,14 @@ class AuthService
      */
     public function register(array $data): array
     {
-        // Valida os dados do usuário
-        $validator = Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
-        }
-
-        // Cria o usuário
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        // Gera o token de autenticação para o usuário recém-criado
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // Define a data de expiração do token
         $expiresAt = Carbon::now()->addWeeks(1);
 
         return [
@@ -69,7 +55,6 @@ class AuthService
      */
     public function login(array $credentials): array
     {
-        // Tenta autenticar o usuário localmente
         if (!Auth::attempt($credentials)) {
             return ['error' => 'Credenciais inválidas para o sistema local.'];
         }
@@ -77,7 +62,6 @@ class AuthService
         $user = Auth::user();
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // Retorna o token local e o session_cookie da OpenFood API
         return [
             'access_token' => $token,
             'token_type' => 'Bearer',

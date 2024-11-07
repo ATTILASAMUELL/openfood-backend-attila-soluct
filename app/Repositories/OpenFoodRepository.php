@@ -37,7 +37,7 @@ class OpenFoodRepository
             $payload = [
                 'code' => $data['code'],
                 'imagefield' => $data['imagefield'],
-                'imgupload_' . $data['imagefield'] => $data['image'], // Imagem enviada com base no campo imagefield
+                'imgupload_' . $data['imagefield'] => $data['image'],
                 'user_id' => $data['user_id'] ?? $this->credentials['user_id'],
                 'password' => $data['password'] ?? $this->credentials['password'],
             ];
@@ -47,7 +47,6 @@ class OpenFoodRepository
                 ->post("{$this->baseUri}cgi/product_image_upload.pl", $payload);
 
             $responseData = $response->json();
-            // Tratamento para verificar sucesso ou erro com base em $responseData
             if (isset($responseData['status']) && $responseData['status'] === 'status ok') {
                 return [
                     'success' => true,
@@ -55,7 +54,6 @@ class OpenFoodRepository
                     'message' => 'Foto adicionada com sucesso.',
                 ];
             } elseif (isset($responseData['error'])) {
-                // Tratamento para erros
                 throw new OpenFoodException(
                     $responseData['error'],
                     0,

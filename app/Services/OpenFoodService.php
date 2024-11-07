@@ -36,21 +36,16 @@ class OpenFoodService
     }
 
 
-
     public function getIngredientsUsingOCR(string $id, string $code, string $processImage, string $ocrEngine): array
     {
-        // Chama o método do repositório para obter os ingredientes via OCR
         $ingredients = $this->repository->getIngredientsUsingOCR($id, $code, $processImage, $ocrEngine);
 
-        // Retorna estrutura padrão de resposta
         if (empty($ingredients)) {
             return ['error' => true, 'message' => 'Nenhum ingrediente encontrado para o código de barras especificado.'];
         }
 
         return ['error' => false, 'data' => $ingredients];
     }
-
-
 
 
     public function getSuggestions(string $tagtype, string $term): array
