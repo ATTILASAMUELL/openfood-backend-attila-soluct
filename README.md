@@ -72,6 +72,13 @@ Para instalar o projeto, siga os passos abaixo:
    ```bash
    php artisan migrate
    ```
+### Documentação da API
+Para documentação da API, o projeto utiliza **Scribe**, uma ferramenta que gera automaticamente documentação detalhada dos endpoints. A documentação é gerada a partir dos comentários e tipos de retorno definidos nos controladores e está disponível para consulta no ambiente local. Isso permite que desenvolvedores tenham uma visão clara dos endpoints disponíveis e suas respectivas requisições e respostas.
+
+Para gerar ou atualizar a documentação com Scribe, utilize o comando:
+```bash
+php artisan scribe:generate
+```
 
 ### Testes de Autenticação
 O projeto inclui testes de autenticação (localizados em `tests/Feature/AuthControllerTest.php`) para garantir a integridade das operações de registro, login, logout, atualização de token e perfil do usuário.
