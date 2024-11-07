@@ -445,8 +445,8 @@ class OpenFoodRepository
     private function mapProductData(array $product): array
     {
         return [
-            'id' =>$this->encryptValue($product['_id']) ?? null,
-            'barcode' => $this->encryptValue($product['code']) ?? null,
+            'id' =>$product['_id'] ?? null,
+            'barcode' => $product['code'] ?? null,
             'name' => $product['product_name'] ?? 'N/A',
             'categories' => $product['categories_tags'] ?? [],
             'brands' => $product['brands'] ?? 'N/A',
