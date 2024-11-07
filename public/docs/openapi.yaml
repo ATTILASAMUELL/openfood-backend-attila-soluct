@@ -1,0 +1,750 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/login:
+    post:
+      summary: 'Realiza o login de um usuário.'
+      operationId: realizaOLoginDeUmUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: hallie.larkin@example.net
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: 'V$b[\~_x}/5%/B3pn`W*'
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
+  /api/register:
+    post:
+      summary: 'Registra um novo usuário.'
+      operationId: registraUmNovoUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: sxznsghmqjmltoycdmvpd
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: conrad.jerde@example.net
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: v4yb2.EfbF4
+                  nullable: false
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/logout:
+    post:
+      summary: 'Realiza o logout de um usuário.'
+      operationId: realizaOLogoutDeUmUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/profile:
+    get:
+      summary: 'Retorna o perfil do usuário logado.'
+      operationId: retornaOPerfilDoUsurioLogado
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/refresh:
+    post:
+      summary: 'Atualiza o token de autenticação.'
+      operationId: atualizaOTokenDeAutenticao
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/openfood/product/{barcode}':
+    get:
+      summary: 'Obtém detalhes de um produto pelo código de barras.'
+      operationId: obtmDetalhesDeUmProdutoPeloCdigoDeBarras
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: barcode
+        description: ''
+        example: est
+        required: true
+        schema:
+          type: string
+  /api/openfood/search:
+    get:
+      summary: 'Pesquisa produtos com base em filtros.'
+      operationId: pesquisaProdutosComBaseEmFiltros
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: ''
+                  example: velit
+                  nullable: true
+                additives_tags:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: true
+                allergens_tags:
+                  type: string
+                  description: ''
+                  example: quaerat
+                  nullable: true
+                brands_tags:
+                  type: string
+                  description: ''
+                  example: sed
+                  nullable: true
+                categories_tags:
+                  type: string
+                  description: ''
+                  example: dolor
+                  nullable: true
+                countries_tags_en:
+                  type: string
+                  description: ''
+                  example: repudiandae
+                  nullable: true
+                emb_codes_tags:
+                  type: string
+                  description: ''
+                  example: qui
+                  nullable: true
+                labels_tags:
+                  type: string
+                  description: ''
+                  example: earum
+                  nullable: true
+                manufacturing_places_tags:
+                  type: string
+                  description: ''
+                  example: sunt
+                  nullable: true
+                nutrition_grades_tags:
+                  type: string
+                  description: ''
+                  example: id
+                  nullable: true
+                origins_tags:
+                  type: string
+                  description: ''
+                  example: placeat
+                  nullable: true
+                packaging_tags_de:
+                  type: string
+                  description: ''
+                  example: qui
+                  nullable: true
+                purchase_places_tags:
+                  type: string
+                  description: ''
+                  example: aut
+                  nullable: true
+                states_tags:
+                  type: string
+                  description: ''
+                  example: officiis
+                  nullable: true
+                stores_tags:
+                  type: string
+                  description: ''
+                  example: tempora
+                  nullable: true
+                traces_tags:
+                  type: string
+                  description: ''
+                  example: amet
+                  nullable: true
+                fields:
+                  type: string
+                  description: ''
+                  example: voluptatem
+                  nullable: true
+                sort_by:
+                  type: string
+                  description: ''
+                  example: last_modified_t
+                  nullable: true
+                  enum:
+                    - product_name
+                    - last_modified_t
+                    - scans_n
+                    - unique_scans_n
+                    - created_t
+                    - completeness
+                    - popularity_key
+                    - nutriscore_score
+                    - nova_score
+                    - nothing
+                    - ecoscore_score
+                page:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 67
+                  nullable: true
+                page_size:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 100.'
+                  example: 19
+                  nullable: true
+      security: []
+  /api/openfood/ingredient:
+    get:
+      summary: 'Obtém os ingredientes de um produto usando OCR.'
+      operationId: obtmOsIngredientesDeUmProdutoUsandoOCR
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ''
+                  example: ingredients_en
+                  nullable: false
+                  enum:
+                    - ingredients_en
+                code:
+                  type: string
+                  description: ''
+                  example: reiciendis
+                  nullable: false
+                process_image:
+                  type: string
+                  description: ''
+                  example: '1'
+                  nullable: false
+                  enum:
+                    - '1'
+                ocr_engine:
+                  type: string
+                  description: ''
+                  example: google_cloud_vision
+                  nullable: false
+                  enum:
+                    - google_cloud_vision
+                page_size:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 100.'
+                  example: 2
+                  nullable: true
+              required:
+                - id
+                - code
+                - process_image
+                - ocr_engine
+      security: []
+  /api/openfood/suggestions:
+    get:
+      summary: 'Obtém sugestões de produtos com base em um termo.'
+      operationId: obtmSugestesDeProdutosComBaseEmUmTermo
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tagtype:
+                  type: string
+                  description: ''
+                  example: ea
+                  nullable: false
+                term:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: false
+              required:
+                - tagtype
+                - term
+      security: []
+  /api/openfood/nutrients:
+    get:
+      summary: 'Obtém uma lista de nutrientes.'
+      operationId: obtmUmaListaDeNutrientes
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cc:
+                  type: string
+                  description: 'Must be 2 characters.'
+                  example: oq
+                  nullable: false
+                lc:
+                  type: string
+                  description: 'Must be 2 characters.'
+                  example: xz
+                  nullable: false
+              required:
+                - cc
+                - lc
+      security: []
+  /api/openfood/attribute-groups:
+    get:
+      summary: 'Obtém os grupos de atributos para pesquisa personalizada.'
+      operationId: obtmOsGruposDeAtributosParaPesquisaPersonalizada
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lc:
+                  type: string
+                  description: 'Must be 2 characters.'
+                  example: cr
+                  nullable: false
+              required:
+                - lc
+      security: []
+  /api/openfood/preferences:
+    get:
+      summary: 'Obtém as preferências de atributos para cálculos de recomendação.'
+      operationId: obtmAsPrefernciasDeAtributosParaClculosDeRecomendao
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lc:
+                  type: string
+                  description: 'Must be 2 characters.'
+                  example: ug
+                  nullable: false
+              required:
+                - lc
+      security: []
+  /api/openfood/product:
+    post:
+      summary: 'Adiciona ou edita um produto.'
+      operationId: adicionaOuEditaUmProduto
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: number
+                  description: ''
+                  example: 41.6949538
+                  nullable: false
+                user_id:
+                  type: string
+                  description: ''
+                  example: quibusdam
+                  nullable: true
+                password:
+                  type: string
+                  description: ''
+                  example: 'R>xA(D!30>!5brO[M^+'
+                  nullable: true
+                app_name:
+                  type: string
+                  description: ''
+                  example: eveniet
+                  nullable: true
+                brands:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                labels:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                categories:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                packaging:
+                  type: string
+                  description: ''
+                  example: quo
+                  nullable: true
+                comment:
+                  type: string
+                  description: ''
+                  example: laudantium
+                  nullable: true
+                app_version:
+                  type: string
+                  description: ''
+                  example: eligendi
+                  nullable: true
+                app_uuid:
+                  type: string
+                  description: ''
+                  example: 871ced8a-cd59-3a7a-870b-e5d4958dd2ed
+                  nullable: true
+              required:
+                - code
+      security: []
+  /api/openfood/product/photo:
+    post:
+      summary: 'Adiciona uma foto a um produto existente.'
+      operationId: adicionaUmaFotoAUmProdutoExistente
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: ''
+                  example: corrupti
+                  nullable: false
+                imagefield:
+                  type: string
+                  description: ''
+                  example: front_en
+                  nullable: false
+                  enum:
+                    - front_en
+                    - ingredients_en
+                    - nutrition_en
+                    - packaging_en
+                    - other_en
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                  nullable: false
+              required:
+                - code
+                - imagefield
+                - image
+      security: []
+  /api/openfood/rotate-photo:
+    post:
+      summary: 'Rotaciona a foto de um produto.'
+      operationId: rotacionaAFotoDeUmProduto
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: ''
+                  example: voluptatem
+                  nullable: false
+                id:
+                  type: string
+                  description: ''
+                  example: quisquam
+                  nullable: false
+                imgid:
+                  type: integer
+                  description: ''
+                  example: 13
+                  nullable: false
+                angle:
+                  type: integer
+                  description: ''
+                  example: '90'
+                  nullable: false
+                  enum:
+                    - '90'
+                    - '180'
+                    - '270'
+              required:
+                - code
+                - id
+                - imgid
+                - angle
+      security: []
+  /api/openfood/crop-photo:
+    post:
+      summary: 'Recorta a foto de um produto.'
+      operationId: recortaAFotoDeUmProduto
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: ''
+                  example: voluptas
+                  nullable: false
+                imgid:
+                  type: integer
+                  description: ''
+                  example: 17
+                  nullable: false
+                id:
+                  type: string
+                  description: ''
+                  example: ut
+                  nullable: false
+                x1:
+                  type: integer
+                  description: ''
+                  example: 17
+                  nullable: true
+                y1:
+                  type: integer
+                  description: ''
+                  example: 11
+                  nullable: true
+                x2:
+                  type: integer
+                  description: ''
+                  example: 7
+                  nullable: true
+                y2:
+                  type: integer
+                  description: ''
+                  example: 11
+                  nullable: true
+                angle:
+                  type: integer
+                  description: ''
+                  example: 20
+                  nullable: true
+                normalize:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: true
+                white_magic:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
+              required:
+                - code
+                - imgid
+                - id
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
